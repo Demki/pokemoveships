@@ -58,7 +58,7 @@ body {
 }
 
 .item:hover { 
-  border: 2px solid var(--hoverColor);
+  outline: 2px solid var(--hoverColor);
   margin: 0;
 }
 
