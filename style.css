@@ -86,6 +86,30 @@ body {
   background-color: var(--color3);
 }
 
+body {
+  counter-reset: markedCount totalCount;
+}
+
+.item {
+  counter-increment: totalCount;
+}
+
+.item[data-count]:not([data-count="0"]):not([data-count="-1"]) {
+  counter-increment: totalCount markedCount;
+}
+
+#counters {
+  font-size: 1.2em;
+}
+
+#markedCount::after {
+  content: counter(markedCount);
+}
+
+#totalCount::after {
+  content: counter(totalCount);
+}
+
 input {
   color: var(--foreground);
   background-color: var(--buttonBGColor);
