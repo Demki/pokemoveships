@@ -283,6 +283,19 @@ function randomize(rand, orig, list) {
   arr.forEach(x => list.appendChild(x));
 }
 
+function nameSorted(orig, list) {
+  const arr = Array.from(orig);
+  arr.sort((a,b) => a.id.localeCompare(b.id, "en-US"));
+  arr.forEach(x => list.removeChild(x));
+  arr.forEach(x => list.appendChild(x));
+}
+
+function origSorted(orig, list) {
+  const arr = Array.from(orig);
+  arr.forEach(x => list.removeChild(x));
+  arr.forEach(x => list.appendChild(x));
+}
+
 function generateId(len) {
   var arr = new Uint8Array(Math.ceil((len || 40) * 3 / 4));
   window.crypto.getRandomValues(arr);
@@ -336,6 +349,15 @@ window.addEventListener("load", () => {
     const seed = seedText.value;
     const rand = randFromSeed(seed);
     randomize(rand, orig, board);
+  });
+  document.getElementById("sortBtn").addEventListener("click", () => {
+    seedText.value = "";
+    nameSorted(orig, board);
+  });
+
+  document.getElementById("origBtn").addEventListener("click", () => {
+    seedText.value = "";
+    origSorted(orig, board);
   });
   
   document.getElementById("clearSearchBtn").addEventListener("click", () => {
